@@ -1,4 +1,4 @@
-﻿namespace Athorization.Models
+﻿namespace Authenticator.Models
 {
     public static class Users
     {
