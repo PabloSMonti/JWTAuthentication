@@ -1,6 +1,6 @@
 # JWTAuthentication
 
-API REST simple de autenticacíon por Json Web Token en Net 6 y Swagger
+API REST simple de autenticacíon por Json Web Token en Net7 y Swagger
 
 Endpoints
 
