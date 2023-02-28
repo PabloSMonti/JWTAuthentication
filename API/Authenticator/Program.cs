@@ -6,6 +6,28 @@ using Authenticator.Tools;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+//habilito cors
+
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
+//var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: MyAllowSpecificOrigins,
+//                      policy =>
+//                      {
+//                          policy.WithOrigins("http://localhost:4200/"
+//                                              );
+//                      });
+//});
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -30,6 +52,7 @@ builder.Services.AddAuthentication(authOptions =>
 
 builder.Services.AddSingleton(typeof(IJwtTokenManager), typeof(JwtTokenManager));
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +63,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseCors("MyPolicy");
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -47,3 +73,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.Run();
+
+
+

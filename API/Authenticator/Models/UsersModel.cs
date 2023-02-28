@@ -2,7 +2,7 @@
 {
     public static class Users
     {
-        public static List<User> UsersData = new List<User>() {new User(0,"Juan",19,"1234"), new User(1, "Pedro", 19,"aaa2"), new User(2, "Jose", 19, "garcia1") }; 
+        public static List<User> UsersData = new List<User>() {new User(0,"Juan",19,"12345678"), new User(1, "Pedro", 19,"aaa2"), new User(2, "Jose", 19, "garcia1") }; 
     }
 
 

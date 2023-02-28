@@ -17,17 +17,17 @@ namespace Authenticator.Controllers
         }
 
         [HttpPost]
-        public IActionResult Authenticate([FromBody] UserCredential credential)
+        public ActionResult<TokenResponse> Authenticate([FromBody] UserCredential credential)
         {
             if (!CredentialValidator.IsValid(credential))
-                return StatusCode(StatusCodes.Status400BadRequest);
+                return new TokenResponse(StatusCodes.Status400BadRequest);
 
             var token = _JwtTokenManager.Authenticate(credential.UserName!, credential.Password!);
 
             if(string.IsNullOrEmpty(token))
-                return StatusCode(StatusCodes.Status401Unauthorized);
+                return new TokenResponse(StatusCodes.Status401Unauthorized);
 
-            return Ok(token);
+            return new TokenResponse(StatusCodes.Status200OK,token);
         }
     }
 }
